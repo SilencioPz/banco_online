@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag que adiciona responsividade -->
+    <title>Página do Cliente - Banco do Silêncio</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: serif;
+            margin: 0;
+            padding: 0 0 100px;
+            text-align: center;
+            box-sizing: border-box;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        header img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner {
+            background-color: #ffcc00;
+            color: #004080;
+            padding: 1rem;
+            margin: 1rem auto;
+            width: 90%;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .banner a {
+            color: #004080;
+            text-decoration: none;
+        }
+
+        .banner a:hover {
+            text-decoration: underline;
+        }
+
+        .account-button {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        .account-button:hover {
+            background-color: #00264d;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            header img {
+                width: 80px;
+            }
+
+            .banner {
+                font-size: 0.9rem;
+            }
+
+            .account-button {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para telas muito pequenas (celulares) */
+        @media (max-width: 480px) {
+            header img {
+                width: 60px;
+            }
+
+            .banner {
+                font-size: 0.8rem;
+            }
+
+            .account-button {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Cabeçalho com o logo -->
+<header>
+    <img th:src="@{/images/silenciopz-logo-150.png}" alt="Logo Banco do Silêncio">
+    <h1>Banco do Silencio</h1>
+</header>
+
+<!-- Banner 1 -->
+<div class="banner">
+    <p>🎉 Você pode sacar o seu FGTS com o Banco do Silêncio! <a href="#">Saiba mais</a></p>
+</div>
+
+<!-- Conteúdo principal -->
+<div>
+    <h2>Bem-vindo à sua área do cliente!</h2>
+    <p>Gerencie suas finanças de forma fácil e segura.</p>
+    <button class="account-button" onclick="window.location.href='/account'">Acessar Minha Conta</button>
+    <button class="account-button" onclick="window.location.href='/sobre'">Sobre o Dev SilencioPz</button>
+</div>
+
+<!-- Formulário de Logout -->
+<form th:action="@{/logout}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="account-button">Sair</button>
+</form>
+
+<!-- Banner 2 -->
+<div class="banner">
+    <p>💰 Você já se cadastrou na nossa Poupança Premiada Silêncio? <a href="#">Confira as vantagens!</a></p>
+</div>
+
+<!-- Rodapé -->
+<footer>
+    <p>Banco do Silêncio &copy; 2025. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>

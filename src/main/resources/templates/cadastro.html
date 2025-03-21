@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag que adiciona responsividade -->
+    <title>Cadastro - Banco do Silêncio</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: serif;
+            font-size: 1.2rem;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .banner {
+            text-align: center;
+            font-family: serif;
+            font-size: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem auto;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        form {
+            background-color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        input {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .login-link {
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .login-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            width: 100px;
+            margin-top: 1rem;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                padding: 1rem;
+            }
+
+            input {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            img {
+                width: 80px;
+            }
+        }
+
+        /* Media queries para telas muito pequenas (celulares) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            form {
+                padding: 0.75rem;
+            }
+
+            input {
+                font-size: 0.8rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+
+            img {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Logo -->
+<img th:src="@{/images/silenciopz-logo-150.png}" alt="Logo Silenciopz">
+
+<!-- Banner -->
+<div class="banner">
+    <p>🎉 Olá! Este é um projeto de aprendizagem em Java, usando Spring Boot do SilencioPz. Não é necessário informar CPF e Nome reais, você pode usar dados aleatórios sem problema. É até melhor, para evitar problemas com hackers.</p>
+</div>
+
+<!-- Título -->
+<h1>Cadastro</h1>
+
+<!-- Formulário de Cadastro -->
+<form th:action="@{/cadastro}" method="post">
+    <div>
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required title="Digite seu nome completo">
+    </div>
+    <div>
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required title="Por favor, digite os 11 números do seu CPF">
+    </div>
+    <div>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required title="Por favor, digite um nome de usuário único">
+    </div>
+    <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required title="Digite uma senha entre 8 e 16 caracteres" minlength="8" maxlength="16">
+    </div>
+    <div>
+        <label for="confirmPassword">Confirme a Senha:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required title="Por favor, confirme a senha digitada">
+    </div>
+    <div>
+        <button type="submit">Cadastrar</button>
+    </div>
+</form>
+
+<!-- Link para Login -->
+<div class="login-link">
+    <p>Já tem uma conta? <a th:href="@{/login}">Faça login</a>.</p>
+</div>
+
+<!-- Mensagem de erro -->
+<div th:if="${param.error}" class="error-message">
+    <p>Erro ao cadastrar. Verifique os dados e tente novamente.</p>
+</div>
+
+<script>
+    document.getElementById('password').addEventListener('input', function () {
+        const password = this.value;
+        const confirmPasswordField = document.getElementById('confirmPassword');
+
+        if (password.length < 8) {
+            confirmPasswordField.disabled = true;
+            confirmPasswordField.setAttribute('placeholder', 'Digite pelo menos 8 caracteres na senha');
+        } else {
+            confirmPasswordField.disabled = false;
+            confirmPasswordField.removeAttribute('placeholder');
+        }
+    });
+</script>
+</body>
+</html>

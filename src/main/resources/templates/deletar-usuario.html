@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletar Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #ff4444;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #ff4444;
+        }
+        .btn-cancel {
+            background-color: #004080;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<h2>Deletar Usuário</h2>
+<p>Tem certeza que deseja deletar este usuário?</p>
+<form th:action="@{/admin/deletar-usuario/{id}(id=${usuario.id})}" method="post">
+    <button type="submit" class="btn btn-delete">Sim, deletar</button>
+    <a href="/admin/" class="btn btn-cancel">Cancelar</a>
+</form>
+
+<a href="/admin/">Voltar</a>
+
+<!-- Formulário de Logout -->
+<form th:action="@{/logout}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="account-button">Sair</button>
+</form>
+</body>
+</html>

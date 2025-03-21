@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag que adiciona responsividade -->
+    <title>Minha Conta - Banco do Silêncio</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: serif;
+            margin: 0;
+            padding: 0 0 100px;
+            text-align: center;
+            box-sizing: border-box;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        header img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner {
+            background-color: #ffcc00;
+            color: #004080;
+            padding: 1rem;
+            margin: 1rem auto;
+            width: 90%;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .banner a {
+            color: #004080;
+            text-decoration: none;
+        }
+
+        .banner a:hover {
+            text-decoration: underline;
+        }
+
+        .account-info {
+            background-color: white;
+            padding: 1.5rem;
+            margin: 1rem auto;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-info h2 {
+            color: #004080;
+            font-size: 1.5rem;
+        }
+
+        .account-info p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .account-button {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            width: 90%;
+            max-width: 300px;
+        }
+
+        .account-button:hover {
+            background-color: #00264d;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            header img {
+                width: 80px;
+            }
+
+            .banner {
+                font-size: 0.9rem;
+            }
+
+            .account-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .account-info p {
+                font-size: 1rem;
+            }
+
+            .account-button {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Media queries para telas muito pequenas (celulares) */
+        @media (max-width: 480px) {
+            header img {
+                width: 60px;
+            }
+
+            .banner {
+                font-size: 0.8rem;
+            }
+
+            .account-info h2 {
+                font-size: 1rem;
+            }
+
+            .account-info p {
+                font-size: 0.9rem;
+            }
+
+            .account-button {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Cabeçalho com o logo -->
+<header>
+    <img th:src="@{/images/silenciopz-logo-150.png}" alt="Logo Banco do Silêncio">
+    <h1>Banco do Silêncio</h1>
+</header>
+
+<!-- Banner -->
+<div class="banner">
+    <p>🎉 Gerencie sua conta de forma fácil e segura!</p>
+</div>
+
+<!-- Informações da conta -->
+<div class="account-info">
+    <h2>Saldo Atual</h2>
+    <p th:text="'R$ ' + ${saldo}">R$ 0,00</p> <!-- Exibe o saldo dinamicamente -->
+</div>
+
+<!-- Mensagem de sucesso após depósito -->
+<div th:if="${param.depositoSucesso}" class="banner">
+    <p>🎉 Depósito realizado com sucesso!</p>
+</div>
+
+<!-- Botões de operações -->
+<div>
+    <button class="account-button" onclick="window.location.href='/deposito'">Depósito</button>
+    <button class="account-button" onclick="window.location.href='/saque'">Saque</button>
+    <button class="account-button" onclick="window.location.href='/transferencia'">Transferência</button>
+</div>
+
+<!-- Botões de navegação -->
+<div>
+    <button class="account-button" onclick="window.location.href='/cliente'">Cliente</button>
+    <button class="account-button" onclick="window.location.href='/sobre'">Sobre o Dev SilencioPz</button>
+</div>
+
+<!-- Formulário de Logout -->
+<form th:action="@{/logout}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="account-button">Sair</button>
+</form>
+
+<!-- Rodapé -->
+<footer>
+    <p>Banco do Silêncio &copy; 2025. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag que adiciona responsividade -->
+    <title>Login - Banco do Silêncio</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: serif;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        form {
+            background-color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        input {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #555;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .cadastro-link {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .cadastro-link a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        .cadastro-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                padding: 1rem;
+            }
+
+            input {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            img {
+                width: 80px;
+            }
+        }
+
+        /* Media queries para telas muito pequenas (celulares) */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            form {
+                padding: 0.75rem;
+            }
+
+            input {
+                font-size: 0.8rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+
+            img {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Logo -->
+<img th:src="@{/images/silenciopz-logo-150.png}" alt="Logo Silenciopz">
+
+<!-- Título -->
+<h1>Login Banco do Silencio</h1>
+
+<!-- Formulário de Login -->
+<form th:action="@{/login}" method="post">
+    <div>
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Entrar</button>
+    </div>
+</form>
+
+<!-- Link para Cadastro -->
+<div class="cadastro-link">
+    <p>Novo por aqui? <a th:href="@{/cadastro}">Crie uma conta</a>.</p>
+</div>
+
+<!-- Mensagem de erro -->
+<div th:if="${param.error}" class="error-message">
+    <p>Usuário ou senha inválidos.</p>
+</div>
+</body>
+</html>

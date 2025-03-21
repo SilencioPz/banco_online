@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag que adiciona responsividade -->
+    <title>Sobre este Projeto - Banco do Silêncio</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: serif;
+            margin: 0;
+            padding: 0 0 100px;
+            text-align: center;
+            box-sizing: border-box;
+            min-height: 100vh;
+            position: relative;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 1.5rem;
+        }
+        header img {
+            width: 100px;
+            margin-bottom: 0.5rem;
+        }
+        .account-button {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            width: 90%;
+            max-width: 300px;
+        }
+        .account-button:hover {
+            background-color: #00264d;
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            padding: 0.75rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .container h1 {
+                font-size: 1.2rem;
+            }
+
+            .container p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+            }
+
+            .container h1 {
+                font-size: 1rem;
+            }
+
+            .container p {
+                font-size: 0.8rem;
+            }
+        }
+        a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            header img {
+                width: 80px;
+            }
+
+            .banner {
+                font-size: 0.9rem;
+            }
+
+            .account-info h2 {
+                font-size: 1.2rem;
+            }
+
+            .account-info p {
+                font-size: 1rem;
+            }
+
+            .account-button {
+                font-size: 0.9rem;
+            }
+        }
+        /* Media queries para telas muito pequenas (celulares) */
+        @media (max-width: 480px) {
+            header img {
+                width: 60px;
+            }
+
+            .banner {
+                font-size: 0.8rem;
+            }
+
+            .account-info h2 {
+                font-size: 1rem;
+            }
+
+            .account-info p {
+                font-size: 0.9rem;
+            }
+
+            .account-button {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Cabeçalho com o logo -->
+<header>
+    <img th:src="@{/images/silenciopz-logo-150.png}" alt="Logo Banco do Silêncio">
+    <h1>Banco do Silencio</h1>
+</header>
+
+<!-- Conteúdo principal -->
+<div>
+    <h2>Projeto BancoOnline do SilencioPz</h2>
+    <p>Este projeto foi baseado em um desafio, para melhorar minhas habilidades em Java. Acabei aprendendo sobre
+        Spring Boot, que não sabia nada sobre com as IAs DeepSeek e Claude. Tenho me esforçado em popular meu GitHub
+        com novos projetos, assim como minhas redes sociais que deixarei abaixo.</p>
+</div>
+
+<div class="container">
+    <div class="p-5 my-4 bg-dark rounded-3">
+        <h1>Sobre o silenciopz</h1>
+        <p>Olá! Eu sou o Bruno C. Perez, desenvolvedor júnior em Java (futuramente em Kotlin) e amante de jogos eletrônicos.</p>
+        <p>Você pode me encontrar no <a href="https://github.com/SilencioPz" target="_blank">GitHub</a>.</p>
+        <p>Você pode me encontrar no <a href="https://www.instagram.com/silenciopz/" target="_blank">Instagram</a>.</p>
+        <p>Você pode me encontrar no <a href="https://www.youtube.com/@silenciopz" target="_blank">Youtube</a>.</p>
+        <p>Você pode me encontrar na <a href="https://www.twitch.tv/silenciopz" target="_blank">Twitch</a>.</p>
+        <p>Você pode me encontrar no <a href="https://www.tiktok.com/@silenciopz85" target="_blank">TikTok</a>.</p>
+        <p>Você pode me encontrar no <a href="https://x.com/silenciopz85" target="_blank">X/Twitter</a>.</p>
+    </div>
+</div>
+
+<div>
+<button class="account-button" onclick="window.location.href='/account'">Acessar Minha Conta</button>
+
+<form th:action="@{/logout}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <button type="submit" class="account-button">Sair</button>
+</form>
+</div>
+
+<!-- Rodapé -->
+<footer>
+    <p>Banco do Silêncio &copy; 2025. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
